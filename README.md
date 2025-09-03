@@ -17,5 +17,5 @@
 5)   Java
 6)   Spring Boot
 7)   MySQL
-
+8) figma
 
