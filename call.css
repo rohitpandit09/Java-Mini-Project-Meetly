@@ -1,0 +1,183 @@
+/* Global */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fafafa;
+  color: #222;
+  display: flex;
+  justify-content: center;
+}
+
+.call-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Header */
+.header {
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 32px;
+  width: 32px;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.meeting-info {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Video Area */
+.video-area {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.video-grid {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.video-card {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Placeholders */
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-placeholder.primary {
+  background: linear-gradient(to bottom right, rgba(79,70,229,0.2), rgba(236,72,153,0.2));
+}
+
+.video-placeholder.accent {
+  background: linear-gradient(to bottom right, rgba(236,72,153,0.2), rgba(79,70,229,0.2));
+}
+
+.video-placeholder.muted {
+  background: linear-gradient(to bottom right, rgba(200,200,200,0.2), rgba(180,180,180,0.2));
+}
+
+/* Avatar */
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Labels */
+.label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(255,255,255,0.85);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.label.you {
+  font-weight: bold;
+}
+
+/* Camera off status */
+.status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(220, 38, 38, 0.85);
+  color: white;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+/* Control Bar */
+.control-bar {
+  height: 80px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+/* Circle Buttons */
+.control-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.control-btn.secondary {
+  background: #f3f3f3;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.control-btn.secondary:hover {
+  background: #e5e5e5;
+}
+
+.control-btn.destructive {
+  background: #ef4444;
+  color: white;
+  transition: background 0.2s;
+}
+
+.control-btn.destructive:hover {
+  background: #dc2626;
+}

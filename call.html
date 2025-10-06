@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meetly Call</title>
+  <link rel="stylesheet" href="call.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="call-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-section">
+        <img src="logo.png" alt="Meetly" class="logo"/>
+        <span class="logo-text">Meetly</span>
+      </div>
+      <div class="meeting-info">
+        <!--yaha button dalna ho to dal dena-->
+        <span>Meeting ID: 123-456-789</span>
+      </div>
+    </header>
+
+    <!-- Main Video Grid -->
+    <main class="video-area">
+      <div class="video-grid">
+        <!-- You -->
+        <div class="video-card">
+          <div class="video-placeholder primary">
+            <div class="avatar">JD</div>
+            <div class="label you">You</div>
+            <div class="status">Camera off</div>
+          </div>
+        </div>
+
+        <!-- Alex -->
+        <div class="video-card">
+          <div class="video-placeholder accent">
+            <div class="avatar">AS</div>
+            <div class="label">Alex Smith</div>
+          </div>
+        </div>
+
+        <!-- Maria -->
+        <div class="video-card">
+          <div class="video-placeholder muted">
+            <div class="avatar">MJ</div>
+            <div class="label">Maria Johnson</div>
+          </div>
+        </div>
+      </div>
+    </main>
+<!-- Control Bar -->
+<div class="control-bar">
+  <!-- Mic Button -->
+  <button class="control-btn secondary" id="micBtn" title="Toggle Mic">
+    <!-- Mic SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+         viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+         class="lucide lucide-mic">
+      <path d="M12 1v10"></path>
+      <path d="M8 5v6a4 4 0 0 0 8 0V5"></path>
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+      <line x1="12" y1="19" x2="12" y2="23"></line>
+      <line x1="8" y1="23" x2="16" y2="23"></line>
+    </svg>
+  </button>
+  
+<!--call off button-->
+<a href="index.html">
+<button class="control-btn destructive" id="endCallBtn" title="End Call" >
+  <svg xmlns="http://www.w3.org/2000/svg"
+     width="24" height="24" viewBox="0 0 24 24"
+     fill="none" stroke="currentColor"
+     stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 📞 Handset shape -->
+  <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+           19.8 19.8 0 0 1-8.63-2.9
+           19.5 19.5 0 0 1-6-6
+           A19.8 19.8 0 0 1 2 5.18
+           2 2 0 0 1 4 3h3.09
+           a2 2 0 0 1 2 1.72
+           12.05 12.05 0 0 0 .57 2.57
+           a2 2 0 0 1-.45 2.11l-1.27 1.27
+           a16 16 0 0 0 6 6l1.27-1.27
+           a2 2 0 0 1 2.11-.45
+           12.05 12.05 0 0 0 2.57.57
+           a2 2 0 0 1 1.72 2z"/>
+  
+  <!-- Slash line (opposite direction) -->
+  <line x1="2" y1="22" x2="22" y2="2" stroke-width="2.4"/>
+</svg>
+</button>
+</a>
+
+  <!-- Video Button -->
+  <button class="control-btn secondary" id="videoBtn" title="Toggle Video">
+    <!-- Video SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+         viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+         class="lucide lucide-video">
+      <polygon points="23 7 16 12 23 17 23 7"></polygon>
+      <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+    </svg>
+  </button>
+</div>
+
+<script>
+    // Activate Lucide icons
+    lucide.createIcons();
+
+    // Demo toggle mic/camera
+    const micBtn = document.getElementById("micBtn");
+    const videoBtn = document.getElementById("videoBtn");
+
+    micBtn.addEventListener("click", () => {
+      const icon = micBtn.querySelector("i");
+      if (icon.getAttribute("data-lucide") === "mic") {
+        icon.setAttribute("data-lucide", "mic-off");
+      } else {
+        icon.setAttribute("data-lucide", "mic");
+      }
+      lucide.createIcons();
+    });
+
+    videoBtn.addEventListener("click", () => {
+      const icon = videoBtn.querySelector("i");
+      if (icon.getAttribute("data-lucide") === "video") {
+        icon.setAttribute("data-lucide", "video-off");
+      } else {
+        icon.setAttribute("data-lucide", "video");
+      }
+      lucide.createIcons();
+    });
+  </script>
+  
+    <script src="default.js"></script>
+</body>
+</html>
