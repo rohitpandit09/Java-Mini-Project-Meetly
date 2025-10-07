@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Atharv Shukla">
+    <title>Meetly homepage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="container flex-between">
+        <div class="logo">
+            <img src="logo.png" alt="Meetly" class="logo-img">
+            <span class="logo-text">Meetly</span>
+        </div>
+        <nav class="nav" id="nav">
+            <div id="auth-buttons">
+                <a href="login.html" class="btn ghost">Sign In</a>
+            </div>
+            <div id="profile" style="display: none; align-items: center;">
+                <img src="profile.png" alt="Profile" class="profile-icon" style="width:40px; height:40px; border-radius:50%;">
+                <span id="username" style="margin-left:10px; font-weight:bold;"></span>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero container">
+    <div class="hero-grid">
+        <div class="hero-content">
+            <h1>Video calls made
+                <br> <span class="highlight">simple</span></h1>
+            <p>Connect with anyone, anywhere. High-quality video calls that just work.</p>
+            <div class="hero-actions">
+                <a href="call.html" class="btn large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M23 7l-7 5 7 5V7z"></path>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg>
+                    New Meeting</a>
+                <div class="join-box">
+                    <input type="text" placeholder="Enter meeting code">
+                    <a href="call.html" class="btn secondary large">Join</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="image.png" alt="Meetly video calling">
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <!-- 🎥 Camera / Video Icon Card -->
+    <div class="card">
+        <div class="icon-wrapper video-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M23 7l-7 5 7 5V7z"></path>
+                <rect x="1" y="5" width="15" height="14" rx="2"></rect>
+            </svg>
+        </div>
+        <h3>HD Video Quality</h3>
+        <p>Crystal clear video calls with adaptive quality that adjusts to your connection.</p>
+    </div>
+
+    <!-- 👥 Users / People Icon Card -->
+    <div class="card">
+        <div class="icon-wrapper users-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+        </div>
+        <h3>Host Unlimited Participants</h3>
+        <p>Invite as many people as you need. No limits on participants or meeting duration.</p>
+    </div>
+
+    <!-- 🛡️ Shield / Security Icon Card -->
+    <div class="card">
+        <div class="icon-wrapper shield-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+        </div>
+        <h3>Secure &amp; Private</h3>
+        <p>End-to-end encryption keeps your conversations private and secure.</p>
+    </div>
+</section>
+
+<!-- Scripts -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const authButtons = document.getElementById("auth-buttons");
+      const profile = document.getElementById("profile");
+      const usernameSpan = document.getElementById("username");
+      const profileImg = profile.querySelector("img");
+
+      if (user && user.name) {
+        // Hide sign-in button
+        authButtons.style.display = "none";
+
+        // Show profile section
+        profile.style.display = "flex";
+
+        // Set username
+        usernameSpan.textContent = user.name;
+
+        // Set profile image (avatar based on name)
+        profileImg.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random`;
+
+        // Add logout button
+        const logoutBtn = document.createElement("button");
+        logoutBtn.textContent = "Logout";
+        logoutBtn.style.marginLeft = "10px";
+        logoutBtn.style.background = "none";
+        logoutBtn.style.border = "none";
+        logoutBtn.style.color = "red";
+        logoutBtn.style.cursor = "pointer";
+
+        logoutBtn.addEventListener("click", () => {
+          localStorage.removeItem("user");
+          window.location.reload();
+        });
+
+        profile.appendChild(logoutBtn);
+      } else {
+        authButtons.style.display = "block";
+        profile.style.display = "none";
+      }
+    });
+</script>
+</body>
+</html>

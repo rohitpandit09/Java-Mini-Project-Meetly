@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Atharv Shukla">
+  <title>login</title>
+  <style>
+    /* Global styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom right, #f0f0f0, #ffffff, #f0f0f0);
+      padding: 20px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Logo & Header */
+    .logo {
+      height: 64px;
+      width: 64px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #111;
+    }
+
+    p {
+      color: #888;
+      margin-top: 5px;
+    }
+
+    /* Card */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      padding: 20px;
+    }
+
+    .card-header {
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .card-description {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-weight: bold;
+      transition: 0.3s;
+      color: #555;
+    }
+
+    .tab.active {
+      color: #93b5f7;
+    }
+
+    /* Form */
+    form {
+      display: none;
+      text-align: left;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      background-color: #6495f6;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #6495f6;
+    }
+
+    .back-btn {
+      margin-top: 15px;
+      background: none;
+      color: #888;
+      font-weight: normal;
+    }
+
+    .back-btn:hover {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="container">
+    <img src="logo.png" alt="Meetly Logo" class="logo">
+    <h1>Welcome to Meetly</h1>
+    <p>Connect with anyone, anywhere</p>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Get Started</div>
+        <div class="card-description">Sign in to your account or create a new one</div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" onclick="openTab('signin')">Sign In</button>
+        <button class="tab" onclick="openTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- Sign In Form -->
+      <form id="signin" class="active" onsubmit="handleSignIn(event)">
+        <div class="form-group">
+          <label for="signin-email">Email</label>
+          <input id="signin-email" type="email" placeholder="name@example.com" required>
+
+        </div>
+        <div class="form-group">
+          <label for="signin-password">Password</label>
+          <input id="signin-password" type="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" id="signin-btn">Sign In</button>
+      </form>
+
+      <!-- Sign Up Form -->
+      <form id="signup" onsubmit="handleSignUp(event)">
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input id="signup-name" type="text" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input id="signup-email" type="email" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input id="signup-password" type="password" placeholder="Create a password" required>
+        </div>
+        <button type="submit" id="signup-btn">Sign Up</button>
+      </form>
+    </div>
+
+    <button class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+  </div>
+
+  <script>
+    function openTab(tabName) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('form').forEach(form => form.classList.remove('active'));
+      
+      document.querySelector(`.tab[onclick="openTab('${tabName}')"]`).classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+    }
+
+    function handleSignIn(event) {
+      event.preventDefault();
+      const btn = document.getElementById('signin-btn');
+      btn.disabled = true;
+      btn.textContent = 'Signing in...';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+        alert('Signed in! Redirecting...');
+        window.location.href = 'call.html';
+      }, 1000);
+    }
+
+    function handleSignUp(event) {
+      event.preventDefault();
+      const btn = document.getElementById('signup-btn');
+      btn.disabled = true;
+      btn.textContent = 'Creating account...';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Sign Up';
+        alert('Account created! Redirecting...');
+        window.location.href = 'call.html';
+      }, 1000);
+    }
+  </script>
+
+  <script>
+      // 🟢 Handle Sign Up
+      function handleSignUp(event) {
+        event.preventDefault();
+        const btn = document.getElementById('signup-btn');
+        btn.disabled = true;
+        btn.textContent = 'Creating account...';
+
+        const fullName = document.getElementById('signup-name').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+
+        fetch('http://localhost:8080/api/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fullName, email, password })
+        })
+        .then(res => res.json())
+        .then(data => {
+          btn.disabled = false;
+          btn.textContent = 'Sign Up';
+          alert(data.message);
+
+          if (data.status === 'success') {
+            // Save user to localStorage
+            localStorage.setItem('user', JSON.stringify({ name: fullName, email }));
+
+            // Redirect to homepage
+            window.location.href = 'index.html';
+          }
+        })
+        .catch(err => {
+          btn.disabled = false;
+          btn.textContent = 'Sign Up';
+          alert('Error: ' + err);
+        });
+      }
+
+      // 🟢 Handle Sign In
+      function handleSignIn(event) {
+        event.preventDefault();
+        const btn = document.getElementById('signin-btn');
+        btn.disabled = true;
+        btn.textContent = 'Signing in...';
+
+        const email = document.getElementById('signin-email').value;
+        const password = document.getElementById('signin-password').value;
+
+        fetch('http://localhost:8080/api/auth/signin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        })
+        .then(res => res.json())
+        .then(data => {
+          btn.disabled = false;
+          btn.textContent = 'Sign In';
+          alert(data.message);
+
+          if (data.status === 'success') {
+            // 🧠 Save both name and email
+            localStorage.setItem('user', JSON.stringify({
+              name: data.fullName || email.split('@')[0],
+              email
+            }));
+
+            // Redirect to homepage
+            window.location.href = 'index.html';
+          }
+        })
+        .catch(err => {
+          btn.disabled = false;
+          btn.textContent = 'Sign In';
+          alert('Error: ' + err);
+        });
+      }
+  </script>
+
+</body>
+</html>
